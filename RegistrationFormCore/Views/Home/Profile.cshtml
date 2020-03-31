@@ -1,69 +1,49 @@
 ﻿@{
-    ViewBag.Title = "User Profile";
+    ViewBag.Title = "Hendricks County MRC COVID19 Volunteer Application";
 }
 
-<h1>User Profile Page</h1>
-@*<form asp-controller="Home" asp-action="GetDetails" method="post">
-        <table>
-            <tr>
-                <td>Name :</td>
-                <td><input name="txtName" type="text" /></td>
-            </tr>
-            <tr>
-                <td>Age :</td>
-                <td><input name="txtAge" type="text" /></td>
-            </tr>
-            <tr>
-                <td>City :</td>
-                <td><input name="txtCity" type="text" /></td>
-            </tr>
-            <tr>
-                <td colspan="2"><input id="Submit1" type="submit" value="submit" /></td>
-            </tr>
-        </table>
-    </form>*@
-<br />
-<br />
+<h1 class="display-4">Hendricks County Medical Reserve Corps COVID19 Volunteer Application</h1>
+<hr />
 
 <h2 style="font-style:italic; color:deeppink">@ViewBag.Result</h2>
 
-<form asp-controller="Home" asp-action="GetDetails" method="post">
+<form asp-controller="Home" asp-action="SubmitRegistration" method="post" enctype="multipart/form-data">
 
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="firstName">First Name</label>
-            <input type="text" class="form-control" placeholder="First name" id="firstName">
+            <input type="text" class="form-control" placeholder="First name" id="firstName" name="firstName">
         </div>
         <div class="form-group col-md-6">
             <label for="lastName">Last Name</label>
-            <input type="text" class="form-control" placeholder="Last name" id="lastName">
+            <input type="text" class="form-control" placeholder="Last name" id="lastName" name="lastName">
         </div>
     </div>
 
     <div class="form-group">
-        <label for="exampleInputEmail1">Email address</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+        <label for="emailaddress">Email address</label>
+        <input type="email" class="form-control" id="emailaddress" name="emailaddress" aria-describedby="emailHelp" placeholder="Enter email">
         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
     </div>
 
     <div class="form-group">
-        <label for="inputAddress">Address</label>
-        <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+        <label for="address1">Address</label>
+        <input type="text" class="form-control" id="address1" name="address1" placeholder="1234 Main St">
     </div>
 
     <div class="form-group">
-        <label for="inputAddress2">Address 2</label>
-        <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+        <label for="address2">Address 2</label>
+        <input type="text" class="form-control" id="address2" name="address2" placeholder="Apartment, studio, or floor">
     </div>
 
     <div class="form-row">
         <div class="form-group col-md-6">
-            <label for="inputCity">City</label>
-            <input type="text" class="form-control" id="inputCity">
+            <label for="city">City</label>
+            <input type="text" class="form-control" id="city" name="city">
         </div>
         <div class="form-group col-md-4">
-            <label for="inputState">State</label>
-            <select id="inputState" class="form-control">
+            <label for="state">State</label>
+            <select id="state" name="state" class="form-control">
                 <option selected>Choose...</option>
                 <option value="AL">Alabama</option>
                 <option value="AK">Alaska</option>
@@ -119,51 +99,52 @@
             </select>
         </div>
         <div class="form-group col-md-2">
-            <label for="inputZip">Zip</label>
-            <input type="text" class="form-control" id="inputZip">
+            <label for="zipcode">Zip</label>
+            <input type="text" class="form-control" id="zipcode" name="zipcode">
         </div>
     </div>
 
     <div class="form-group">
         <label for="birthday">Birthday:</label>
-        <input type="date" id="birthday" class="form-control" aria-describedby="birthdayHelp">
-        <small id="fileHelp" class="form-text text-muted">We collect birthday so that we can determine if you may be part of a vulnerable population, which will allow us to match you up with an assignment that is safest for you.</small>
+        <input type="date" id="birthday" name="birthday" class="form-control" aria-describedby="birthdayHelp">
+        <small id="birthdayHelp" class="form-text text-muted">We collect birthday so that we can determine if you may be part of a vulnerable population, which will allow us to match you up with an assignment that is safest for you.</small>
     </div>
 
     <div class="form-group">
-        <label for="dlPhotoInput">Driver's License Photo (Back side only please!)</label>
-        <input type="file" class="form-control-file" id="dlPhotoInput" aria-describedby="fileHelp">
+        <label for="dlphoto">Driver's License Photo (Back side only please!)</label>
+        <input type="file" class="form-control-file" id="dlphoto" name="dlphoto" aria-describedby="fileHelp">
         <small id="fileHelp" class="form-text text-muted">Please upload a photo of the back side of your driver's license.  All we need are the barcodes.  This is used to input into our SafeWorker system to run a simple background check to ensure our volunteers are eligable for their duties.</small>
     </div>
+
 
     <h4>I am interested in helping with the following types of work:</h4>
     <div class="form-group">
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="gridCheck">
+            <input class="form-check-input" type="checkbox" id="gridCheck1" name="gridCheck1">
             <label class="form-check-label" for="gridCheck">
                 Delivering groceries or medicine to a person's home
             </label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="gridCheck">
+            <input class="form-check-input" type="checkbox" id="gridCheck2" name="gridCheck2">
             <label class="form-check-label" for="gridCheck">
                 Working as a nurse at a drive-thru Covid-19 test site in Hendricks County
             </label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="gridCheck">
+            <input class="form-check-input" type="checkbox" id="gridCheck3" name="gridCheck3">
             <label class="form-check-label" for="gridCheck">
                 Assisting the Medical Reserve Corps with event coordination (making phone calls, assisting with other administrative duties)
             </label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="gridCheck">
+            <input class="form-check-input" type="checkbox" id="gridCheck4" name="gridCheck4">
             <label class="form-check-label" for="gridCheck">
                 Providing assistance with setup and tear down of a Covid-19 test site in Hendricks County
             </label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="gridCheck">
+            <input class="form-check-input" type="checkbox" id="gridCheck5" name="gridCheck5">
             <label class="form-check-label" for="gridCheck">
                 Providing other support as needed (please provide more information below)
             </label>
@@ -171,8 +152,8 @@
     </div>
 
     <div class="form-group">
-        <label for="otherInfo">Additional Information</label>
-        <textarea type="text" class="form-control" id="otherInfo" aria-describedby="otherInfoHelp"></textarea>
+        <label for="additionalInfo">Additional Information</label>
+        <textarea type="text" class="form-control" id="additionalInfo" name="additionalInfo" aria-describedby="otherInfoHelp"></textarea>
         <small id="otherInfoHelp" class="form-text text-muted">Provide us with other information about yourself or what you might be interested in helping with.</small>
     </div>
 

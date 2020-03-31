@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using RegistrationFormCore.Models;
@@ -20,7 +22,10 @@ namespace RegistrationFormCore.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var umodel = new UserDataModel();
+            var users = umodel.GetAll();
+
+            return View(users);
         }
 
         public IActionResult Privacy()
@@ -38,13 +43,31 @@ namespace RegistrationFormCore.Controllers
         {
             return View();
         }
+
         [HttpPost]
-        public IActionResult GetDetails()
+        public async Task<IActionResult> SubmitRegistration(UserDataModel model)
         {
-            UserDataModel umodel = new UserDataModel();
-            umodel.Name = HttpContext.Request.Form["txtName"].ToString();
-            umodel.Age = Convert.ToInt32(HttpContext.Request.Form["txtAge"]);
-            umodel.City = HttpContext.Request.Form["txtCity"].ToString();
+
+            var umodel = new UserDataModel
+            {
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                EmailAddress = model.EmailAddress,
+                Address1 = model.Address1,
+                Address2 = model.Address2,
+                City = model.City,
+                State = model.State,
+                ZipCode = model.ZipCode,
+                Birthday = model.Birthday,
+                AdditionalInfo = model.AdditionalInfo
+            };
+
+            using (var memoryStream = new MemoryStream())
+            {
+                await model.DLPhoto.CopyToAsync(memoryStream);
+                umodel.DLPhotoBytes = memoryStream.ToArray();
+            }
+
             int result = umodel.SaveDetails();
             if (result > 0)
             {
