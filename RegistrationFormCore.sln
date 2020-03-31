@@ -5,6 +5,11 @@ VisualStudioVersion = 16.0.29609.76
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RegistrationFormCore", "RegistrationFormCore\RegistrationFormCore.csproj", "{407EF29D-5068-4FE3-9C79-FCB8EDA5BE51}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2F095ABC-9862-43F1-AE72-8CE1F2D34895}"
+	ProjectSection(SolutionItems) = preProject
+		DbCreateScript.sql = DbCreateScript.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
