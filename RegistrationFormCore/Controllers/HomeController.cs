@@ -23,9 +23,9 @@ namespace RegistrationFormCore.Controllers
         public IActionResult Index()
         {
             var umodel = new UserDataModel();
-            var users = umodel.GetAll();
+           ViewBag.Users = umodel.GetAll();
 
-            return View(users);
+            return View();
         }
 
         public IActionResult Privacy()
@@ -78,6 +78,13 @@ namespace RegistrationFormCore.Controllers
                 ViewBag.Result = "Something Went Wrong";
             }
             return View("Profile");
+        }
+
+        public ActionResult DownloadPhoto([FromQuery] string emailAddress)
+        {
+            var umodel = new UserDataModel();
+            byte[] fileData = umodel.GetImage(emailAddress);
+            return File(fileData, "image/jpeg", emailAddress + ".jpg");
         }
     }
 }

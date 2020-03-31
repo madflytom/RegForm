@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 
 namespace RegistrationFormCore.Models
@@ -66,6 +67,9 @@ namespace RegistrationFormCore.Models
                 SqlCommand cmd = new SqlCommand("select * from Registrations", con);
                 cmd.CommandType = CommandType.Text;
                 con.Open();
+
+                byte[] photo;
+
                 SqlDataReader rdr = cmd.ExecuteReader();
                 while (rdr.Read())
                 {
@@ -81,13 +85,40 @@ namespace RegistrationFormCore.Models
                     udm.Birthday = Convert.ToDateTime(rdr["Birthday"].ToString());
                     udm.AdditionalInfo = rdr["AdditionalInfo"].ToString();
 
-                    imageString = rdr["DLPhoto"].ToString();
-
+                    if (rdr["DLPhoto"].ToString() != "")
+                    {
+                        udm.DLPhotoBytes = (byte[])rdr["DLPhoto"];
+                    }
+                    
 
                     registrants.Add(udm);
                 }
             }
+
             return registrants;
+
+        }
+
+        public byte[] GetImage(string emailAddress)
+        {
+            byte[] photo = null;
+            using (SqlConnection con = new SqlConnection(GetConString.ConString()))
+            {
+                List<UserDataModel> registrant = new List<UserDataModel>();
+                SqlCommand cmd = new SqlCommand("select DlPhoto from Registrations where EmailAddress = '" + emailAddress +"'", con);
+                cmd.CommandType = CommandType.Text;
+                con.Open();
+
+                SqlDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    if (rdr["DLPhoto"].ToString() != "")
+                    {
+                        photo = (byte[])rdr["DLPhoto"];
+                    }
+                }
+            }
+            return photo;
 
         }
     }

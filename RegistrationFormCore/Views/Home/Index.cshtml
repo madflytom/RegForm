@@ -3,6 +3,48 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h3 class="display-4">Hendricks County MRC COVID19 Volunteer Registrations</h3>
 </div>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Email</th>
+            <th scope="col">Address</th>
+            <th scope="col">Birthday</th>
+            <th scope="col">Additional Info</th>
+            <th scope="col">Driver's Licnese Photo</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var user in ViewBag.Users)
+        {
+            <tr>
+                <th scope="row">@user.FirstName</th>
+                <td>@user.LastName</td>
+                <td>@user.EmailAddress</td>
+                <td>
+                    @user.Address1<br />
+                    @user.Address2<br />
+                    @user.City @user.State, @user.ZipCode
+                </td>
+                <td>@user.Birthday</td>
+                <td>@user.AdditionalInfo</td>
+                <td>
+                    @*@if (user.DLPhotoBytes != null)
+        {
+            <img src="data:image;base64,@System.Convert.ToBase64String(user.DLPhotoBytes)" />
+        }*@
+                    @Html.ActionLink("Download Photo","DownloadPhoto","Home", new { emailAddress = @user.EmailAddress })
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+
