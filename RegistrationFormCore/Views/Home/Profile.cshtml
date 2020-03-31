@@ -2,7 +2,7 @@
     ViewBag.Title = "Hendricks County MRC COVID19 Volunteer Application";
 }
 
-<h1 class="display-4">Hendricks County Medical Reserve Corps COVID19 Volunteer Application</h1>
+<h1 class="display-4">Hendricks County MRC COVID19 Volunteer Application</h1>
 <hr />
 
 <h2 style="font-style:italic; color:deeppink">@ViewBag.Result</h2>
@@ -103,20 +103,21 @@
             <input type="text" class="form-control" id="zipcode" name="zipcode">
         </div>
     </div>
+    <hr />
 
     <div class="form-group">
         <label for="birthday">Birthday:</label>
         <input type="date" id="birthday" name="birthday" class="form-control" aria-describedby="birthdayHelp">
         <small id="birthdayHelp" class="form-text text-muted">We collect birthday so that we can determine if you may be part of a vulnerable population, which will allow us to match you up with an assignment that is safest for you.</small>
     </div>
-
+    <hr />
     <div class="form-group">
         <label for="dlphoto">Driver's License Photo (Back side only please!)</label>
         <input type="file" class="form-control-file" id="dlphoto" name="dlphoto" aria-describedby="fileHelp">
         <small id="fileHelp" class="form-text text-muted">Please upload a photo of the back side of your driver's license.  All we need are the barcodes.  This is used to input into our SafeWorker system to run a simple background check to ensure our volunteers are eligable for their duties.</small>
     </div>
 
-
+    <hr />
     <h4>I am interested in helping with the following types of work:</h4>
     <div class="form-group">
         <div class="form-check">
