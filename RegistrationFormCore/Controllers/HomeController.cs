@@ -59,7 +59,8 @@ namespace RegistrationFormCore.Controllers
                 State = model.State,
                 ZipCode = model.ZipCode,
                 Birthday = model.Birthday,
-                AdditionalInfo = model.AdditionalInfo
+                AdditionalInfo = model.AdditionalInfo,
+                PhoneNumber = model.PhoneNumber
             };
 
             using (var memoryStream = new MemoryStream())

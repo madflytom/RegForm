@@ -23,11 +23,12 @@ namespace RegistrationFormCore.Models
         public string AdditionalInfo { get; set; }
         public IFormFile DLPhoto { get; set; }
         public byte[] DLPhotoBytes { get; set; }
+        public string PhoneNumber { get; set; }
 
         public int SaveDetails()
         {
             SqlConnection con = new SqlConnection(GetConString.ConString());
-            string query = "INSERT INTO Registrations(FirstName, LastName, EmailAddress, Address1, Address2, City, State, ZipCode, Birthday, DLPhoto, AdditionalInfo) VALUES (@FirstName, @LastName, @EmailAddress, @Address1, @Address2, @City, @State, @ZipCode, @Birthday, @DLPhoto, @AdditionalInfo)";
+            string query = "INSERT INTO Registrations(FirstName, LastName, EmailAddress, Address1, Address2, City, State, ZipCode, Birthday, DLPhoto, AdditionalInfo, PhoneNumber) VALUES (@FirstName, @LastName, @EmailAddress, @Address1, @Address2, @City, @State, @ZipCode, @Birthday, @DLPhoto, @AdditionalInfo, @PhoneNumber)";
 
             SqlCommand cmd = new SqlCommand(query, con);
 
@@ -41,6 +42,7 @@ namespace RegistrationFormCore.Models
             cmd.Parameters.AddWithValue("@Birthday", Birthday);
             cmd.Parameters.AddWithValue("@DLPhoto", DLPhotoBytes);
             cmd.Parameters.AddWithValue("@AdditionalInfo", AdditionalInfo);
+            cmd.Parameters.AddWithValue("@PhoneNumber", PhoneNumber);
 
             //TODO: Can any other fields be null?  Make sure form prevents it.
 
@@ -84,6 +86,7 @@ namespace RegistrationFormCore.Models
                     udm.ZipCode = rdr["ZipCode"].ToString();
                     udm.Birthday = Convert.ToDateTime(rdr["Birthday"].ToString());
                     udm.AdditionalInfo = rdr["AdditionalInfo"].ToString();
+                    udm.PhoneNumber = rdr["PhoneNumber"].ToString();
 
                     if (rdr["DLPhoto"].ToString() != "")
                     {
